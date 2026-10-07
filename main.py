@@ -95,7 +95,7 @@ def get_gauge_history(gauge_id):
     """Fetch historical data for a gauge from Supabase"""
     from supabase import create_client
     SUPABASE_URL = os.getenv("SUPABASE_URL")
-    SUPABASE_KEY = os.getenv("SUPABASE_KEY")       "Security Fix: Moving Supabase Keys to env"
+    SUPABASE_KEY = os.getenv("SUPABASE_KEY")      
     
     try:
         supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
