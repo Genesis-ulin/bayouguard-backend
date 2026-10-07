@@ -20,9 +20,7 @@ app.add_middleware(
     allow_origins=["*"],
 )
 
-# --------------------------------------------
 # LOAD ML MODEL (if available)
-# --------------------------------------------
 
 ML_AVAILABLE = False
 model = None
@@ -96,8 +94,8 @@ def find_closest_gauge(lat, lng):
 def get_gauge_history(gauge_id):
     """Fetch historical data for a gauge from Supabase"""
     from supabase import create_client
-    SUPABASE_URL = "https://hyrqaiedlevqzbfhfxpu.supabase.co"
-    SUPABASE_KEY = "sb_publishable_-nDM7hubn0soFXTqdqm-9g_EnrIxloy"
+    SUPABASE_URL = os.getenv("SUPABASE_URL")
+    SUPABASE_KEY = os.getenv("SUPABASE_KEY")       "Security Fix: Moving Supabase Keys to env"
     
     try:
         supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
