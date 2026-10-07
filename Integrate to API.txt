@@ -1,0 +1,19 @@
+import pickle
+
+# Load model at startup
+model = pickle.load(open("flood_model.pkl", "rb"))
+
+def calculate_risk_from_gauge(gauge, distance_miles):
+    # Old rule-based code
+    # Instead, use ML:
+    features = [[current, buffer, rate_of_rise, level_1h_ago, level_6h_ago]]
+    flood_probability = model.predict_proba(features)[0][1]  # % chance of flooding
+    score = int(flood_probability * 100)
+    
+    if score <= 25: tier = "SAFE"
+    elif score <= 50: tier = "LOW"
+    elif score <= 75: tier = "MEDIUM"
+    elif score <= 90: tier = "HIGH"
+    else: tier = "CRITICAL"
+    
+    return tier, score, buffer, current, flood, distance_miles

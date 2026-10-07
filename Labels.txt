@@ -1,0 +1,6 @@
+# Create target variable: will it flood in the next 6 hours?
+df["flood_next_6h"] = (
+    df.groupby("gauge_id")["buffer"]
+    .shift(-24)  # Look 6 hours ahead (24 readings)
+    .apply(lambda x: 1 if x <= 0 else 0)  # 1 = flood, 0 = no flood
+)

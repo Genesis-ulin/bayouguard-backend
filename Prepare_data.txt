@@ -1,0 +1,13 @@
+#Loading 35K records from Supabase 
+
+from supabase import create_client 
+import pandas as pd
+
+
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+response = supabase.table("flood_gauges").select("*").execute()
+df = pd.DataFrame(response.data)
+
+
+print(f"Loaded{len(df)} records")
+print(df["risk_tier"].value_counts()) 

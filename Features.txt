@@ -1,0 +1,13 @@
+#Creating time-based features 
+
+df["recorded_at"] = pd.to_datatime(df[""recorded_at"])
+df = df.sort_values(["guage_id", "recorded_at"])
+
+#calculating rate of rise 
+df["rate_of_rise"] = df.groupby("gauge_id")["current_level"].diff()
+
+
+#lag features (water level 1 hour ago, 2 hours ago)
+df["level_1h_ago"] = df.groupby("gauge_id")["current_level"].shift(4) #4 readings = 1 hour
+
+df["level_6h_ago"] = df.groupby("gauge_id")["current_level"].shift(24) #24 readings = 6 hours 

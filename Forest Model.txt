@@ -1,0 +1,25 @@
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+import pickle
+
+# Prepare features
+features = ["current_level", "buffer", "rate_of_rise", "level_1h_ago", "level_6h_ago"]
+X = df[features].dropna()
+y = df.loc[X.index, "flood_next_6h"]
+
+# Split data (70% train, 30% test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Train model 
+model = RandomForestClassifier(
+    n_estimators=100,
+    class_weight="balanced",  # This handles the rare flood events!
+    random_state=42
+)
+model.fit(X_train, y_train)
+
+# Save model
+pickle.dump(model, open("flood_model.pkl", "wb"))
+
+print(f"Model trained! Accuracy: {model.score(X_test, y_test):.2%}")
