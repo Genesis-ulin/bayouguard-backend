@@ -1,9 +1,10 @@
 import requests
 from supabase import create_client
 import datetime
+import os
 
-SUPABASE_URL = "https://hyrqaiedlevqzbfhfxpu.supabase.co"
-SUPABASE_KEY = "sb_publishable_-nDM7hubn0soFXTqdqm-9g_EnrIxloy"
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
