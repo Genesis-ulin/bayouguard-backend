@@ -1,9 +1,10 @@
 import requests
+import os                     #Adding 
 from supabase import create_client
 
-# Supabase connection - YOUR CORRECT KEY IS NOW HERE
-SUPABASE_URL = "https://hyrqaiedlevqzbfhfxpu.supabase.co"
-SUPABASE_KEY = "sb_publishable_-nDM7hubn0soFXTqdqm-9g_EnrIxloy"
+# Supabase connection  (Security Fix: Moving Supabase Keys to Environment)
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
