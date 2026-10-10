@@ -20,7 +20,7 @@ app.add_middleware(
     allow_origins=["*"],
 )
 
-# LOAD ML MODEL (if available)
+# LOAD ML MODEL
 
 ML_AVAILABLE = False
 model = None
@@ -227,7 +227,7 @@ def get_risk(address: str = Query(...), lat: float = Query(...), lng: float = Qu
     }
 
 
-@app.get("/gauges")
+@app.api_route("/gauges" , methods=["GET", "HEAD"])
 def get_all_gauges():
     """Get all 39 flood gauges with locations and risk levels"""
     url = "https://www.harriscountyfws.org/Home/GetSiteRecentData?regionId=3&regionId=24&regionId=25&regionId=26&regionId=21&regionId=4&regionId=10&regionId=22&regionId=1&regionId=14&regionId=18&regionId=19&regionId=23&regionId=20&timeSpan=7&dt=1779069600000"
