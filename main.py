@@ -201,7 +201,7 @@ def calculate_risk_from_gauge(gauge, distance_miles):
 
 
 @app.get("/risk")
-def get_risk(address: str = Query(...), lat: float = Query(...), lng: float = Query(...)), lang: str = Query("en")):
+def get_risk(address: str = Query(...), lat: float = Query(...), lng: float = Query(...), lang: str = Query("en")):
     """Get flood risk for a specific address (optional lang: en, es, vi)"""
     gauge, distance = find_closest_gauge(lat, lng)
     
