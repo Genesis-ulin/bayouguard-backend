@@ -1,7 +1,7 @@
 """
 train_model.py
 Train a Random Forest model to predict HIGH/CRITICAL flood events.
-Uses 418k+ records from Supabase.
+Uses 435k+ records from Supabase.
 """
 
 
